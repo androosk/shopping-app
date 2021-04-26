@@ -2,22 +2,30 @@
   "name": "mern-shopping",
   "version": "1.0.0",
   "description": "",
-  "main": "server/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "cd server && npm start",
-    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
+    "clientinstall": "npm i --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "seed": "node config/seeds.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-express": "^2.11.0",
+    "bcrypt": "^4.0.1",
+    "express": "^4.17.1",
     "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.7",
     "stripe": "^8.145.0"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
   }
 }
